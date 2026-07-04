@@ -221,7 +221,12 @@ function App() {
       )}
 
       {save.phase === "map" && save.profile && (
-        <MapScreen save={save} profile={save.profile} onOpenScene={openScene} onRestart={hardRestart} />
+        <MapScreen
+          save={save}
+          profile={save.profile}
+          onOpenScene={openScene}
+          onHome={() => updateSave({ phase: "home" })}
+        />
       )}
 
       {save.phase === "scene" && save.profile && (
@@ -293,7 +298,7 @@ function ProfileScreen({
             className={draft.gender === "male" ? "gender-card selected" : "gender-card"}
             onClick={() => onChange({ ...draft, gender: "male" })}
           >
-            <span className="gender-portrait male" style={{ backgroundImage: `url(${malePortrait})` }} />
+            <span className="gender-portrait" style={{ backgroundImage: `url(${malePortrait})` }} />
             <span className="gender-title">贵公子</span>
             <span>锦衣玉食，初入凡尘</span>
           </button>
@@ -301,7 +306,7 @@ function ProfileScreen({
             className={draft.gender === "female" ? "gender-card selected" : "gender-card"}
             onClick={() => onChange({ ...draft, gender: "female" })}
           >
-            <span className="gender-portrait female" style={{ backgroundImage: `url(${femalePortrait})` }} />
+            <span className="gender-portrait" style={{ backgroundImage: `url(${femalePortrait})` }} />
             <span className="gender-title">贵小姐</span>
             <span>云鬓明眸，不识职场</span>
           </button>
@@ -356,12 +361,12 @@ function MapScreen({
   save,
   profile,
   onOpenScene,
-  onRestart,
+  onHome,
 }: {
   save: GameSave;
   profile: PlayerProfile;
   onOpenScene: (scene: Scene) => void;
-  onRestart: () => void;
+  onHome: () => void;
 }) {
   const currentScene = getScene(save);
   const token = profile.gender === "female" ? femaleToken : maleToken;
@@ -379,8 +384,8 @@ function MapScreen({
           <p className="eyebrow">第 {currentScene.day} 天</p>
           <h1>{currentScene.title}</h1>
         </div>
-        <button className="small-action" onClick={onRestart} aria-label="重新开始">
-          重开
+        <button className="small-action" onClick={onHome} aria-label="回到首页">
+          首页
         </button>
       </header>
 
@@ -466,6 +471,19 @@ function SceneScreen({
     <section className="scene-screen">
       <div className="scene-stage">
         <img src={scene.background} alt={scene.location} />
+        {scene.npcs.map((npc) => (
+          <div
+            className={`stage-npc ${npc.kind}`}
+            key={npc.id}
+            style={{
+              backgroundImage: `url(${npc.image})`,
+              left: `${npc.x}%`,
+              bottom: `${npc.y}%`,
+              transform: `translateX(-50%) scale(${npc.scale ?? 1})`,
+            }}
+            aria-label={npc.name}
+          />
+        ))}
         <div
           className={`stage-token ${walking ? "walking" : ""} ${profile.gender}`}
           style={{ backgroundImage: `url(${token})` }}
@@ -485,7 +503,7 @@ function SceneScreen({
 
       {!selectedChoiceId && !walking && choicesReady && (
         <>
-          <MentorBubble text={scene.mentorBefore} />
+          <MentorBubble text={scene.mentorBefore} variant="tip" />
           <div className="choice-list reveal">
             {scene.choices.map((choice) => (
               <button key={choice.id} onClick={() => onChoose(choice.id)}>
@@ -513,9 +531,9 @@ function SceneScreen({
   );
 }
 
-function MentorBubble({ text }: { text: string }) {
+function MentorBubble({ text, variant = "bubble" }: { text: string; variant?: "bubble" | "tip" }) {
   return (
-    <aside className="mentor-bubble">
+    <aside className={`mentor-bubble ${variant}`}>
       <span className="mentor-avatar" style={{ backgroundImage: `url(${birdMentor})` }} aria-label="鸟导师" />
       <p>{text}</p>
     </aside>

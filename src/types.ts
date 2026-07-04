@@ -23,6 +23,16 @@ export interface PersonalityVariant {
   note: string;
 }
 
+export interface SceneNpc {
+  id: string;
+  name: string;
+  image: string;
+  kind: "boss" | "hr" | "coworker";
+  x: number;
+  y: number;
+  scale?: number;
+}
+
 export interface Scene {
   id: string;
   day: number;
@@ -31,6 +41,7 @@ export interface Scene {
   location: string;
   background: string;
   mapX: number;
+  npcs: SceneNpc[];
   description: string;
   mentorBefore: string;
   transition: string;

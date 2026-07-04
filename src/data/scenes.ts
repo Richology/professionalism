@@ -7,9 +7,12 @@ const assets = {
   officeMap: new URL("../../pic/officemap.png", import.meta.url).href,
   maleToken: new URL("../../pic/nanbirdwalk.png", import.meta.url).href,
   femaleToken: new URL("../../pic/nvbirdwalk.png", import.meta.url).href,
-  malePortrait: new URL("../../pic/nanwalk.png", import.meta.url).href,
-  femalePortrait: new URL("../../pic/nvwalk.png", import.meta.url).href,
+  malePortrait: new URL("../../pic/main-boy.png", import.meta.url).href,
+  femalePortrait: new URL("../../pic/main-girl.png", import.meta.url).href,
   birdMentor: new URL("../../pic/bird-mentor.jpg", import.meta.url).href,
+  boss: new URL("../../pic/boss.png", import.meta.url).href,
+  hr: new URL("../../pic/qiantaigirl.png", import.meta.url).href,
+  coworker: new URL("../../pic/tongshi.png", import.meta.url).href,
   desk: new URL("../../pic/gongwei.png", import.meta.url).href,
   canteen: new URL("../../pic/canting.png", import.meta.url).href,
   meeting: new URL("../../pic/huiyishi.png", import.meta.url).href,
@@ -49,6 +52,10 @@ export const scenes: Scene[] = [
     location: "新人工位",
     background: assets.desk,
     mapX: 20,
+    npcs: [
+      { id: "hr", name: "HR", image: assets.hr, kind: "hr", x: 69, y: 8, scale: 1 },
+      { id: "coworker", name: "邻座同事", image: assets.coworker, kind: "coworker", x: 76, y: 8, scale: 0.94 },
+    ],
     description:
       "HR 把你带到工位，交代几句就匆匆离开。电脑还没配好，周围同事都低头忙着自己的事，没人主动看向你。你忽然意识到，这里没有管家，也没有丫鬟，所有事情都要自己开口。",
     mentorBefore:
@@ -106,6 +113,7 @@ export const scenes: Scene[] = [
     location: "公司餐厅",
     background: assets.canteen,
     mapX: 8,
+    npcs: [{ id: "boss", name: "领导", image: assets.boss, kind: "boss", x: 69, y: 8, scale: 1.08 }],
     description:
       "领导说请小组吃饭，欢迎新同事。菜刚上齐，他忽然看向你：'介绍一下自己吧，随便说，别紧张。'所有人的筷子都慢了半拍。",
     mentorBefore:
@@ -163,6 +171,10 @@ export const scenes: Scene[] = [
     location: "会议室",
     background: assets.meeting,
     mapX: 76,
+    npcs: [
+      { id: "boss", name: "领导", image: assets.boss, kind: "boss", x: 67, y: 8, scale: 1.02 },
+      { id: "coworker", name: "同事", image: assets.coworker, kind: "coworker", x: 76, y: 8, scale: 0.92 },
+    ],
     description:
       "部门周会轮流汇报。轮到你时，投影还亮着，领导看向你。你还没正式产出任何东西，但沉默本身也会被看见。",
     mentorBefore:
@@ -220,6 +232,7 @@ export const scenes: Scene[] = [
     location: "工位区",
     background: assets.desk,
     mapX: 28,
+    npcs: [{ id: "coworker", name: "同事", image: assets.coworker, kind: "coworker", x: 70, y: 8, scale: 1 }],
     description:
       "一个不太熟的同事私聊你，说有个数据报表'很快的，半小时就弄完'。你手头正有领导交代的任务，明天截止。",
     mentorBefore:
@@ -277,6 +290,7 @@ export const scenes: Scene[] = [
     location: "工位区",
     background: assets.desk,
     mapX: 33,
+    npcs: [{ id: "coworker", name: "指出问题的同事", image: assets.coworker, kind: "coworker", x: 70, y: 8, scale: 1 }],
     description:
       "部门大群里，一个同事 @ 你：'这个数据好像有问题，是你昨天发的那个表里的吧？'你检查后发现，确实是自己弄错了。",
     mentorBefore:
@@ -334,6 +348,7 @@ export const scenes: Scene[] = [
     location: "工位区",
     background: assets.desk,
     mapX: 42,
+    npcs: [{ id: "boss", name: "领导", image: assets.boss, kind: "boss", x: 70, y: 8, scale: 1 }],
     description:
       "领导发来邮件：'这周结束前，把入职第一周学习总结发我。'现在已经下午四点半，你之前完全没收到这个通知。",
     mentorBefore:
@@ -391,6 +406,7 @@ export const scenes: Scene[] = [
     location: "公司门口",
     background: assets.lobby,
     mapX: 50,
+    npcs: [{ id: "coworker", name: "晚归同事", image: assets.coworker, kind: "coworker", x: 70, y: 8, scale: 0.94 }],
     description:
       "第一周结束了。你走出公司大楼，手机亮起，是家里人的消息：'第一周怎么样？还适应吗？'你忽然想起苏府的月亮，也想起这几天每一次手心出汗。",
     mentorBefore:

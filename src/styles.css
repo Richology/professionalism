@@ -151,16 +151,16 @@ button:disabled {
 .story-scroll {
   position: relative;
   z-index: 1;
-  width: min(560px, 100%);
+  width: min(500px, 100%);
   color: var(--paper-ink);
   background:
-    linear-gradient(90deg, oklch(82% 0.06 77 / 0.14), transparent 22%, transparent 78%, oklch(82% 0.06 77 / 0.14)),
-    oklch(91% 0.04 88 / 0.82);
-  border: 1px solid oklch(70% 0.08 67 / 0.78);
+    linear-gradient(90deg, oklch(82% 0.06 77 / 0.1), transparent 22%, transparent 78%, oklch(82% 0.06 77 / 0.1)),
+    oklch(91% 0.04 88 / 0.68);
+  border: 1px solid oklch(70% 0.08 67 / 0.62);
   border-radius: 8px;
-  padding: 28px;
+  padding: 24px;
   box-shadow: var(--shadow);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(1.5px);
 }
 
 .eyebrow {
@@ -198,22 +198,22 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  margin: 22px 0;
+  margin: 16px 0 18px;
 }
 
 .gender-card {
-  min-height: 154px;
+  min-height: 128px;
   border-radius: 8px;
   color: var(--paper-ink);
-  background: oklch(88% 0.04 82);
+  background: oklch(88% 0.04 82 / 0.68);
   border: 1px solid oklch(64% 0.08 68 / 0.55);
   text-align: center;
-  padding: 14px;
+  padding: 10px;
 }
 
 .gender-card.selected {
   outline: 3px solid var(--orange);
-  background: oklch(94% 0.05 88);
+  background: oklch(94% 0.05 88 / 0.76);
 }
 
 .gender-title {
@@ -225,12 +225,12 @@ h2 {
 
 .gender-portrait {
   display: block;
-  width: 74px;
-  height: 82px;
-  margin: 0 auto 8px;
+  width: 82px;
+  height: 68px;
+  margin: 0 auto 6px;
   background-repeat: no-repeat;
-  background-size: 400% 400%;
-  background-position: 19% 33.333%;
+  background-size: contain;
+  background-position: center;
   filter: drop-shadow(0 10px 8px oklch(38% 0.05 70 / 0.24));
 }
 
@@ -408,6 +408,29 @@ h2 {
   bottom: 6%;
   width: 76px;
   height: 98px;
+  z-index: 2;
+}
+
+.stage-npc {
+  position: absolute;
+  width: 74px;
+  height: 96px;
+  z-index: 2;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 10px 10px oklch(8% 0.04 270 / 0.42));
+}
+
+.stage-npc.hr,
+.stage-npc.coworker {
+  background-size: 400% 400%;
+  background-position: 19% 33.3%;
+}
+
+.stage-npc.boss {
+  width: 82px;
+  height: 104px;
+  background-size: 300% 400%;
+  background-position: 0 0;
 }
 
 .stage-token.male {
@@ -459,7 +482,7 @@ h2 {
 }
 
 .typewriter-text {
-  min-height: 6.1em;
+  min-height: 5.4em;
 }
 
 .mentor-bubble {
@@ -476,6 +499,16 @@ h2 {
   padding: 12px;
 }
 
+.mentor-bubble.tip {
+  grid-template-columns: 38px 1fr;
+  gap: 9px;
+  margin-top: 8px;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  line-height: 1.38;
+  background: oklch(28% 0.08 156 / 0.88);
+}
+
 .mentor-avatar {
   width: 54px;
   height: 54px;
@@ -484,6 +517,11 @@ h2 {
   background-size: cover;
   background-position: center;
   box-shadow: inset 0 0 0 1px oklch(94% 0.02 90 / 0.2);
+}
+
+.mentor-bubble.tip .mentor-avatar {
+  width: 38px;
+  height: 38px;
 }
 
 .mentor-bubble p,
@@ -496,9 +534,9 @@ h2 {
 
 .choice-list {
   width: min(760px, calc(100% - 28px));
-  margin: 12px auto 0;
+  margin: 8px auto 0;
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .choice-list.reveal {
@@ -506,7 +544,7 @@ h2 {
 }
 
 .choice-list button {
-  min-height: 58px;
+  min-height: 52px;
   line-height: 1.42;
 }
 
