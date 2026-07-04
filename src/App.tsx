@@ -61,6 +61,10 @@ function App() {
   }, [save]);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [save.phase, save.currentSceneIndex, save.selectedSceneId]);
+
+  useEffect(() => {
     const tracks = [
       introAudioRef.current,
       bodyAudioRef.current,

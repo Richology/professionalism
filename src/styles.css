@@ -571,14 +571,14 @@ h2 {
 
 .summary-screen {
   display: grid;
-  align-content: center;
+  align-content: start;
   gap: 12px;
 }
 
 .summary-hero {
   width: min(760px, calc(100% - 28px));
   aspect-ratio: 1672 / 941;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   margin: 0 auto;
   border-radius: 8px;
