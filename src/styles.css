@@ -422,8 +422,8 @@ h2 {
 
 .stage-npc.hr,
 .stage-npc.coworker {
-  background-size: 400% 400%;
-  background-position: 19% 33.3%;
+  background-size: contain;
+  background-position: center;
 }
 
 .stage-npc.boss {
